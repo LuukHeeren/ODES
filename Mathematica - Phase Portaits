@@ -1,0 +1,21 @@
+nu = 0.3;
+betaH = 1.0;
+betaV = 0.2;
+epsilon = 0.2;
+delta = 1/7;
+
+
+sH = 0.9;
+vH = 0.05;
+rH = 0.0;
+sV = 0.95;
+
+vectorField[iH_, iV_] := 
+ Module[{diH, diV}, diH = iV  sH + epsilon  vH  iH - (delta/betaH)  iH;
+  diV = (betaV/betaH)  iH  sV;
+  {diH, diV}]
+VectorPlot[vectorField[iH, iV], {iH, 0, 1}, {iV, 0, 1}, 
+ AxesLabel -> {"iH (Infected Hosts)", "iV (Infected Vectors)"}, 
+ VectorStyle -> "Arrow3D", VectorScale -> Small, 
+ FrameLabel -> {"iH (Infected Hosts)", "iV (Infected Vectors)"}, 
+ StreamPoints -> Fine]
